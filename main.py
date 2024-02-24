@@ -1,6 +1,8 @@
 import json
 from urllib import request, parse
 
+from prompt import gen_prompt
+
 # 读取文件全部内容
 workflow = '/Users/coolsnow/code/ComfyUI/workflows/api/sdxl_lightning_workflow_full.json'
 with open(workflow, 'r') as f:
@@ -15,12 +17,17 @@ def queue_prompt(prompt):
     resp = request.urlopen(req)
     print("response:", resp.read().decode('utf-8'))
 
-prompt = json.loads(prompt_text)
-# set the text prompt for our positive CLIPTextEncode
-prompt["6"]["inputs"]["text"] = "masterpiece best quality man"
-
-# set the seed for our KSampler node
-# prompt["3"]["inputs"]["seed"] = 5
 
 
-queue_prompt(prompt)
+# 循环遍历100次
+for i in range(100):
+    prompt = json.loads(prompt_text)
+    # set the text prompt for our positive CLIPTextEncode
+    new_prompt = gen_prompt()
+    # print(f'prompt: {new_prompt}')
+    prompt["6"]["inputs"]["text"] = new_prompt
+
+    # set the seed for our KSampler node
+    # prompt["3"]["inputs"]["seed"] = 5
+
+    queue_prompt(prompt)
