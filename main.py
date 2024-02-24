@@ -31,5 +31,5 @@ def test_gen_prompt():
     queue_prompt(prompt)
 
 # 循环遍历100次
-for i in range(100):
+for i in range(5):
     test_gen_prompt()
