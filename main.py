@@ -18,9 +18,7 @@ def queue_prompt(prompt):
     print("response:", resp.read().decode('utf-8'))
 
 
-
-# 循环遍历100次
-for i in range(100):
+def test_gen_prompt():
     prompt = json.loads(prompt_text)
     # set the text prompt for our positive CLIPTextEncode
     new_prompt = gen_prompt()
@@ -31,3 +29,7 @@ for i in range(100):
     # prompt["3"]["inputs"]["seed"] = 5
 
     queue_prompt(prompt)
+
+# 循环遍历100次
+for i in range(100):
+    test_gen_prompt()
