@@ -31,4 +31,4 @@ def gen_prompt():
             prompt += content
     print(f'gen_prompt: {prompt}')
     return prompt
-gen_prompt()
+# gen_prompt()
